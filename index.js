@@ -9,8 +9,13 @@ const {
   getPersonalArts,
   editDescription,
   getArtInfo,
+  deleteArt,
 } = require('./controllers/arts');
-const { addJournal, getPersonalJournals } = require('./controllers/journals');
+const {
+  addJournal,
+  getPersonalJournals,
+  deleteJournal,
+} = require('./controllers/journals');
 const { sequelize } = require('./util/database');
 const { Person } = require('./models/person');
 const { Art } = require('./models/art');
@@ -44,6 +49,8 @@ app.get('/personal/:id', getPersonalArts);
 app.put('/personal/:id', editDescription);
 app.post('/journals', addJournal);
 app.get('/journals/:id', getPersonalJournals);
+app.delete('/journals/:id', deleteJournal);
+app.delete('/arts/:id', deleteArt);
 
 sequelize
   .sync()

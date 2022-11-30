@@ -34,26 +34,32 @@ module.exports = {
   exploreArts: async (req, res) => {
     try {
       const all = await Art.findAll({
+        limit: 10,
         where: {
           person_id: { [Op.ne]: +req.params.id },
+          privacy: 'Public',
         },
+        order: [['art_id', 'DESC']],
       });
       res.status(200).send(all);
     } catch (err) {
       console.log(err);
+      res.sendStatus(400);
     }
   },
   getPersonalArts: async (req, res) => {
     try {
       const personal = await Art.findAll({
+        limit: 10,
         where: {
           person_id: +req.params.id,
         },
+        order: [['art_id', 'DESC']],
       });
       res.status(200).send(personal);
     } catch (err) {
-      console.log(req.params);
       console.log(err);
+      res.sendStatus(400);
     }
   },
   editDescription: async (req, res) => {
@@ -67,6 +73,7 @@ module.exports = {
       );
     } catch (err) {
       console.log(err);
+      res.sendStatus(400);
     }
   },
   getArtInfo: async (req, res) => {
@@ -78,8 +85,21 @@ module.exports = {
       });
       res.status(200).send(pinpoint);
     } catch (err) {
-      console.log(req.params);
       console.log(err);
+      res.sendStatus(400);
+    }
+  },
+  deleteArt: async (req, res) => {
+    try {
+      await Art.destroy({
+        where: {
+          art_id: +req.params.id,
+        },
+      });
+      res.sendStatus(200);
+    } catch {
+      console.log(err);
+      res.sendStatus(400);
     }
   },
 };

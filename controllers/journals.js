@@ -28,10 +28,23 @@ module.exports = {
         where: {
           person_id: +req.params.id,
         },
+        order: [['journal_id', 'DESC']],
       });
       res.status(200).send(personal);
     } catch (err) {
-      console.log(req.params);
+      console.log(err);
+      res.sendStatus(400);
+    }
+  },
+  deleteJournal: async (req, res) => {
+    try {
+      await Journal.destroy({
+        where: {
+          journal_id: +req.params.id,
+        },
+      });
+      res.sendStatus(200);
+    } catch {
       console.log(err);
       res.sendStatus(400);
     }
