@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { SERVER_PORT } = process.env;
+const { PORT } = process.env;
 const { register, getAllPersons } = require('./controllers/auth');
 const {
   addArt,
@@ -56,8 +56,8 @@ app.delete('/arts/:id', deleteArt);
 sequelize
   .sync()
   .then(() => {
-    app.listen(SERVER_PORT, () => {
-      console.log(`running on PORT ${SERVER_PORT}`);
+    app.listen(PORT, () => {
+      console.log(`running on PORT ${PORT}`);
     });
   })
   .catch((err) => {
