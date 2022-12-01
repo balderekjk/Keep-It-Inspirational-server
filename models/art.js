@@ -8,6 +8,8 @@ module.exports = {
       autoIncrement: true,
       allowNull: false,
       primaryKey: true,
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
     },
     person_id: {
       type: DataTypes.INTEGER,
@@ -16,8 +18,8 @@ module.exports = {
         key: 'person_id',
       },
       allowNull: false,
-      onUpdate: 'cascade',
-      onDelete: 'cascade',
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
     },
     title: {
       type: DataTypes.STRING(155),

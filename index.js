@@ -24,15 +24,16 @@ const { Journal } = require('./models/journal');
 Person.hasMany(Art, {
   foreignKey: 'person_id',
 });
-Art.belongsTo(Person, { foreignKey: 'person_id' });
+Art.belongsTo(Person, { foreignKey: 'person_id', onDelete: 'CASCADE' });
 
 Person.hasMany(Journal, {
   foreignKey: 'person_id',
 });
-Journal.belongsTo(Person, { foreignKey: 'person_id' });
+Journal.belongsTo(Person, { foreignKey: 'person_id', onDelete: 'CASCADE' });
 
 Art.hasMany(Journal, {
   foreignKey: 'art_id',
+  onDelete: 'CASCADE',
 });
 
 const app = express();

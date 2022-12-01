@@ -97,7 +97,7 @@ module.exports = {
         },
       });
       res.sendStatus(200);
-    } catch {
+    } catch (err) {
       console.log(err);
       res.sendStatus(400);
     }
