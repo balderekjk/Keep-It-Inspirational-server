@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../util/database');
 
+//testing redeploy
+
 module.exports = {
   Art: sequelize.define('art', {
     art_id: {
